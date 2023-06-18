@@ -38,6 +38,7 @@ export const podcastsSlice = createSlice({
     builder.addCase(fetchPodcasts.fulfilled, (state, action) => {
       state.status = 'succeeded';
       state.podcasts = action.payload;
+      localStorage.setItem('_fetchDate', JSON.stringify(new Date().getTime()));
     });
     builder.addCase(fetchPodcasts.rejected, (state, action) => {
       state.status = 'failed';
