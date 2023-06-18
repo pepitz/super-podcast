@@ -5,13 +5,14 @@ import {
 } from 'react-router-dom';
 
 import RootLayout from '../../pages/Root/Root';
+import PodcastDashboard from '../../pages/PodcastDashboard';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
     children: [
-      // { index: true, element: <PodcastDashboard />, loader: loadPodcasts },
+      { index: true, element: <PodcastDashboard /> },
       // {
       //   path: "/podcast",
       //   element: <PodcastLayout />,
