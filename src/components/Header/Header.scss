@@ -1,0 +1,48 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--color-gray);
+  color: var(--color-primary-blue);
+}
+
+.header nav {
+  flex: 2;
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  h1 {
+    margin: 0;
+  }
+}
+
+.header {
+  .loader {
+    flex: 1;
+  }
+}
+
+.loader {
+  display: flex;
+  justify-content: flex-end;
+
+  &__container {
+    height: 40px;
+    width: 40px;
+    border: 16px solid var(--color-light-gray);
+    border-top: 16px solid var(--color-primary-blue);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
