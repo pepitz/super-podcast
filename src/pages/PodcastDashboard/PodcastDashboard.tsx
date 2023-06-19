@@ -12,8 +12,6 @@ const PodcastDashboard = (): JSX.Element => {
     podcastsError,
   } = usePodcasts();
 
-  console.log(localStorage.length);
-
   let content = null;
   if (podcastsStatus === 'loading') {
     content = <p>Loading podcasts...</p>;

@@ -1,7 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../../../app/store';
-import { Entry, Feed } from './../../../types/podcast.types';
+import { Entry } from './../../../types/podcast.types';
 import axios from 'axios';
+import { formatDistance } from 'date-fns';
+import {
+  FETCHED_PODCASTS,
+  FETCHED_PODCASTS_DATE,
+} from '../../../constants/constants';
+import { convertTimeOrDataFromLocalStorage } from '../../../utils/convertStorageDate';
 
 type TPodcastsSliceStatus = 'idle' | 'loading' | 'succeeded' | 'failed';
 
@@ -20,6 +26,21 @@ const initialState: IPodcastsSliceState = {
 export const fetchPodcasts = createAsyncThunk<Entry[]>(
   'podcasts/fetchPodcasts',
   async () => {
+    const lastFetchedDate = convertTimeOrDataFromLocalStorage<number>(
+      FETCHED_PODCASTS_DATE
+    );
+    const lastFetchedPodcasts =
+      convertTimeOrDataFromLocalStorage<Entry[]>(FETCHED_PODCASTS);
+
+    const dayHasPassed = formatDistance(
+      new Date(lastFetchedDate),
+      new Date()
+    ).includes('day');
+
+    if (dayHasPassed === false && lastFetchedPodcasts) {
+      return lastFetchedPodcasts;
+    }
+
     const response = await axios.get(
       `https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json`
     );
@@ -38,7 +59,13 @@ export const podcastsSlice = createSlice({
     builder.addCase(fetchPodcasts.fulfilled, (state, action) => {
       state.status = 'succeeded';
       state.podcasts = action.payload;
-      localStorage.setItem('_fetchDate', JSON.stringify(new Date().getTime()));
+
+      // save timestamp/data to localStorage for persistense
+      localStorage.setItem(
+        FETCHED_PODCASTS_DATE,
+        new Date().getTime().toString()
+      );
+      localStorage.setItem(FETCHED_PODCASTS, JSON.stringify(action.payload));
     });
     builder.addCase(fetchPodcasts.rejected, (state, action) => {
       state.status = 'failed';
