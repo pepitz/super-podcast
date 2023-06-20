@@ -2,7 +2,7 @@ import usePodcasts from '../PodcastDashboard/usePodcasts';
 
 import PodcastLayout from '../../components/PodcastLayout';
 import EpisodesCounter from '../../components/EpisodesCounter/EpisodesCounter';
-import EpisodesListCard from '../../components/EpisodesListCard/EpisodesListCard';
+import EpisodesList from '../../components/EpisodesList/EpisodesList';
 
 import './PodcastDetail.scss';
 
@@ -17,7 +17,7 @@ const PodcastDetail = () => {
             <EpisodesCounter data={podcastEpisodes} />
           </div>
           <div className="episodes__list">
-            <EpisodesListCard item={podcastEpisodes} />
+            <EpisodesList data={podcastEpisodes} />
           </div>
         </div>
       ) : null}
