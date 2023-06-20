@@ -7,6 +7,7 @@ import {
 import RootLayout from '../../pages/Root/Root';
 import PodcastDashboard from '../../pages/PodcastDashboard';
 import PodcastDetail from '../../pages/PodcastDetail/PodcastDetail';
+import PodcastEpisode from '../../pages/PodcastEpisode/PodcastEpisode';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: '/podcast/:podcastId',
         element: <PodcastDetail />,
+      },
+      {
+        path: '/podcast/:podcastId/episode/:episodeId',
+        element: <PodcastEpisode />,
       },
     ],
   },

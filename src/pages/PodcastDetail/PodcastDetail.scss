@@ -1,7 +1,8 @@
 .episodes__container {
-  width: inherit;
+  flex: 2;
   min-width: 20em;
   .episodes__counter {
+    margin-bottom: 16px;
     text-align: left;
   }
   .episodes__list {

@@ -10,8 +10,17 @@ import {
   getPodcastsStatus,
 } from '../../store/features/podcasts/podcastsSlice';
 
-import { Entry, ICurrentPodcast } from '../../types/podcast.types';
-import { convertToCurrentPodcast } from '../../utils/helpers';
+import {
+  Entry,
+  IEpisodeProps,
+  ICurrentPodcast,
+} from '../../types/podcast.types';
+import {
+  convertToCurrentPodcast,
+  dayInterval,
+  getLastUpdatedDate,
+} from '../../utils/helpers';
+import { fetchEpisodes } from '../../store/features/episodes/episodesSlice';
 
 const usePodcasts = () => {
   const navigate = useNavigate();
@@ -20,10 +29,13 @@ const usePodcasts = () => {
   const podcastsError = useAppSelector(getPodcastsError);
   const podcastsStatus = useAppSelector(getPodcastsStatus);
 
-  const { podcastId } = useParams();
+  const { podcastId, episodeId } = useParams();
   const [query, setQuery] = useState('');
   const [podcastsData, setPodcastsData] = useState<Entry[]>(podcasts);
   const [podcastInfo, setPodcastInfo] = useState({} as ICurrentPodcast);
+  const [podcastEpisodes, setPodcastEpisodes] = useState<IEpisodeProps[]>();
+  const [selectedEpisode, setSelectedEpisode] = useState<IEpisodeProps>();
+  const [selectedEpisodesId, setSelectedEpisodesId] = useState<string>();
 
   const handleChangeQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
@@ -62,6 +74,63 @@ const usePodcasts = () => {
     }
   }, [podcastId, podcasts]);
 
+  const getEpisodesData = useCallback(async () => {
+    if (podcastId) {
+      const podcastEpisodesData = await fetchEpisodes(Number(podcastId));
+      setPodcastEpisodes(podcastEpisodesData);
+    }
+  }, [podcastId]);
+
+  const getStoredEpisodes = () => {
+    const dataPodcastEpisodesArr = localStorage.getItem('_episodes');
+    if (dataPodcastEpisodesArr?.length) {
+      setPodcastEpisodes(JSON.parse(dataPodcastEpisodesArr));
+    }
+  };
+
+  const getStoredEpisodesDate = useCallback(
+    () => getLastUpdatedDate('_episodesTime'),
+    []
+  );
+
+  const episodesStoredTime = getStoredEpisodesDate();
+
+  const haveTimePassedEpisodes = episodesStoredTime
+    ? dayInterval(new Date(episodesStoredTime))
+    : false;
+  useEffect(() => {
+    if (
+      !episodesStoredTime ||
+      haveTimePassedEpisodes ||
+      (podcastId && selectedEpisodesId && selectedEpisodesId !== podcastId)
+    ) {
+      getEpisodesData();
+    } else {
+      getStoredEpisodes();
+    }
+  }, [
+    episodesStoredTime,
+    getEpisodesData,
+    haveTimePassedEpisodes,
+    selectedEpisodesId,
+    podcastId,
+  ]);
+
+  const getSelectedEpisode = useCallback(() => {
+    if (episodeId && podcastEpisodes) {
+      const episodeWithSelectedId = podcastEpisodes.find(
+        (episode) => episode.id === episodeId
+      );
+      setSelectedEpisode(episodeWithSelectedId);
+    }
+  }, [episodeId, podcastEpisodes]);
+
+  const getSelectedEpisodesId = useCallback(() => {
+    if (podcastEpisodes) {
+      setSelectedEpisodesId(podcastEpisodes[0].collectionId);
+    }
+  }, [podcastEpisodes]);
+
   useEffect(() => {
     dispatch(fetchPodcasts());
   }, [dispatch]);
@@ -95,6 +164,14 @@ const usePodcasts = () => {
     getSelectedPodcast();
   }, [getSelectedPodcast]);
 
+  useEffect(() => {
+    getSelectedEpisode();
+  }, [getSelectedEpisode]);
+
+  useEffect(() => {
+    getSelectedEpisodesId();
+  }, [getSelectedEpisodesId]);
+
   return {
     query,
     handleChangeQuery,
@@ -104,6 +181,8 @@ const usePodcasts = () => {
     handleSelectCurrentPodcast,
     podcastInfo,
     handleBackToPodcasts,
+    podcastEpisodes,
+    selectedEpisode,
   };
 };
 

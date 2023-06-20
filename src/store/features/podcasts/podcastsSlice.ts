@@ -2,12 +2,12 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../../app/store';
 import { Entry, ICurrentPodcast } from './../../../types/podcast.types';
 import axios from 'axios';
-import { formatDistance } from 'date-fns';
 import {
   FETCHED_PODCASTS,
   FETCHED_PODCASTS_DATE,
 } from '../../../constants/constants';
 import { convertTimeOrDataFromLocalStorage } from '../../../utils/convertStorageDate';
+import { dayInterval } from '../../../utils/helpers';
 
 type TPodcastsSliceStatus = 'idle' | 'loading' | 'succeeded' | 'failed';
 
@@ -41,18 +41,17 @@ export const fetchPodcasts = createAsyncThunk<Entry[]>(
     const lastFetchedPodcasts =
       convertTimeOrDataFromLocalStorage<Entry[]>(FETCHED_PODCASTS);
 
-    const dayHasPassed = formatDistance(
-      new Date(lastFetchedDate),
-      new Date()
-    ).includes('day');
-
-    if (dayHasPassed === false && lastFetchedPodcasts) {
+    if (
+      dayInterval(new Date(lastFetchedDate)) === false &&
+      lastFetchedPodcasts
+    ) {
       return lastFetchedPodcasts;
     }
 
     const response = await axios.get(
       `https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json`
     );
+
     return response.data.feed.entry;
   }
 );
@@ -91,8 +90,6 @@ export const { setCurrentPodcast } = podcastsSlice.actions;
 
 // Selectors
 export const selectAllPodcasts = (state: RootState) => state.podcasts.podcasts;
-export const selectCurrentPodcast = (state: RootState) =>
-  state.podcasts.currentPodcast;
 export const getPodcastsStatus = (state: RootState) => state.podcasts.status;
 export const getPodcastsError = (state: RootState) => state.podcasts.error;
 

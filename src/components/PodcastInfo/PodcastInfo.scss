@@ -1,5 +1,6 @@
 .card {
   height: fit-content;
+  max-height: 60vh;
   flex: 1;
   display: flex;
   justify-content: center;
@@ -38,6 +39,7 @@
 }
 
 .description {
+  overflow-y: scroll;
   padding-top: 24px;
   font-size: 14px;
   &__title {
