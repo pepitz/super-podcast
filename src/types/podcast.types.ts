@@ -42,6 +42,46 @@ export interface ICurrentPodcast {
   description: string;
 }
 
+export interface IEpisodeProps {
+  id: string;
+  collectionId: string;
+  title: string;
+  url: string;
+  description: string;
+  releaseDate: string;
+  durationTime: number;
+}
+
+export interface IEpisodeInitial {
+  artistIds: number[];
+  artistViewUrl: string;
+  artworkUrl60: string;
+  artworkUrl160: string;
+  artworkUrl600: string;
+  closedCaptioning: string;
+  collectionId: number;
+  collectionName: string;
+  collectionViewUrl: string;
+  contentAdvisoryRating: string;
+  country: string;
+  description: string;
+  episodeContentType: string;
+  episodeFileExtension: string;
+  episodeGuid: string;
+  episodeUrl: string;
+  feedUrl: string;
+  genres: { name: string; genreId: string }[];
+  kind: string;
+  previewUrl: string;
+  releaseDate: string;
+  shortDescription: string;
+  trackId: number;
+  trackName: string;
+  trackTimeMillis: number;
+  trackViewUrl: string;
+  wrapperType: string;
+}
+
 export interface Category {
   attributes: CategoryAttributes;
 }
