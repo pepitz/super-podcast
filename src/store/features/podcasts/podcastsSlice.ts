@@ -1,6 +1,6 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../../app/store';
-import { Entry } from './../../../types/podcast.types';
+import { Entry, ICurrentPodcast } from './../../../types/podcast.types';
 import axios from 'axios';
 import { formatDistance } from 'date-fns';
 import {
@@ -15,12 +15,21 @@ interface IPodcastsSliceState {
   podcasts: Entry[];
   status: TPodcastsSliceStatus;
   error: null | string;
+  currentPodcast: ICurrentPodcast;
 }
 
 const initialState: IPodcastsSliceState = {
   podcasts: [],
   status: 'idle',
   error: null,
+  currentPodcast: {
+    id: 0,
+    title: '',
+    heightImg: 40,
+    srcImg: '',
+    author: '',
+    description: '',
+  },
 };
 
 export const fetchPodcasts = createAsyncThunk<Entry[]>(
@@ -51,7 +60,11 @@ export const fetchPodcasts = createAsyncThunk<Entry[]>(
 export const podcastsSlice = createSlice({
   name: 'podcasts',
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    setCurrentPodcast: (state, action: PayloadAction<ICurrentPodcast>) => {
+      state.currentPodcast = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchPodcasts.pending, (state, action) => {
       state.status = 'loading';
@@ -74,8 +87,12 @@ export const podcastsSlice = createSlice({
   },
 });
 
+export const { setCurrentPodcast } = podcastsSlice.actions;
+
 // Selectors
 export const selectAllPodcasts = (state: RootState) => state.podcasts.podcasts;
+export const selectCurrentPodcast = (state: RootState) =>
+  state.podcasts.currentPodcast;
 export const getPodcastsStatus = (state: RootState) => state.podcasts.status;
 export const getPodcastsError = (state: RootState) => state.podcasts.error;
 

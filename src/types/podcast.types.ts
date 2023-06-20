@@ -33,6 +33,15 @@ export interface Entry {
   'im:releaseDate': IMReleaseDate;
 }
 
+export interface ICurrentPodcast {
+  id: number;
+  title: string;
+  heightImg: number;
+  srcImg: string;
+  author: string;
+  description: string;
+}
+
 export interface Category {
   attributes: CategoryAttributes;
 }
