@@ -10,6 +10,7 @@ const PodcastDashboard = (): JSX.Element => {
     podcastsData,
     podcastsStatus,
     podcastsError,
+    handleSelectCurrentPodcast,
   } = usePodcasts();
 
   let content = null;
@@ -23,7 +24,10 @@ const PodcastDashboard = (): JSX.Element => {
           counter={podcastsData.length}
           handleChangeQuery={handleChangeQuery}
         />
-        <PodcastsList podcasts={podcastsData} />
+        <PodcastsList
+          podcasts={podcastsData}
+          handlePodcastClick={handleSelectCurrentPodcast}
+        />
       </>
     );
   } else if (podcastsStatus === 'failed') {

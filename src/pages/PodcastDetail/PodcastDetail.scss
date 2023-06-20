@@ -1,0 +1,39 @@
+.episodes {
+  flex: 2;
+  background-color: wheat;
+}
+
+.episodesList {
+  list-style: none;
+  width: 80%;
+  align-self: flex-end;
+}
+.episodesListHeader {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid lightslategray;
+}
+
+.title {
+  width: 70%;
+  text-decoration: none;
+}
+
+.date {
+  width: 15%;
+}
+
+.duration {
+  width: 15%;
+}
+
+.itemRow {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid lightgrey;
+  padding: 10px 0 10px 10px;
+}
+
+.itemRow:nth-child(even) {
+  background-color: #f2f2f2;
+}
