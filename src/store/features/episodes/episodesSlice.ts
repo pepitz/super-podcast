@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IEpisodeInitial, IEpisodeProps } from '../../../types/podcast.types';
+import { IEpisodeInitial, IEpisodeProps } from 'types/podcast.types';
 import axios from 'axios';
 
 export interface EpisodesState {

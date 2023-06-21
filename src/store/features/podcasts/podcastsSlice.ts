@@ -1,13 +1,10 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../../../app/store';
-import { Entry, ICurrentPodcast } from './../../../types/podcast.types';
+import { RootState } from 'app/store';
+import { Entry, ICurrentPodcast } from 'types/podcast.types';
 import axios from 'axios';
-import {
-  FETCHED_PODCASTS,
-  FETCHED_PODCASTS_DATE,
-} from '../../../constants/constants';
-import { convertTimeOrDataFromLocalStorage } from '../../../utils/convertStorageDate';
-import { dayInterval } from '../../../utils/helpers';
+import { FETCHED_PODCASTS, FETCHED_PODCASTS_DATE } from 'constants/constants';
+import { convertTimeOrDataFromLocalStorage } from 'utils/convertStorageDate';
+import { dayInterval } from 'utils/helpers';
 
 type TPodcastsSliceStatus = 'idle' | 'loading' | 'succeeded' | 'failed';
 
