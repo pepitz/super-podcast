@@ -1,6 +1,6 @@
 import './PodcastDashboard.scss';
 import PodcastsList from '../../components/PodcastsList/PodcastsList';
-import Search from '../../components/Search/Search';
+import Search from 'components/Search/Search';
 import usePodcasts from './usePodcasts';
 
 const PodcastDashboard = (): JSX.Element => {

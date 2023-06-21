@@ -1,4 +1,4 @@
-import usePodcasts from '../../pages/PodcastDashboard/usePodcasts';
+import usePodcasts from 'pages/PodcastDashboard/usePodcasts';
 import './Episode.scss';
 
 const Episode = () => {

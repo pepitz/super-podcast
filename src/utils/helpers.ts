@@ -1,4 +1,4 @@
-import { Entry, ICurrentPodcast } from '../types/podcast.types';
+import { Entry, ICurrentPodcast } from 'types/podcast.types';
 
 import { formatDistance } from 'date-fns';
 

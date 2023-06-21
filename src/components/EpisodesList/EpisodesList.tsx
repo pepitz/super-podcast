@@ -1,9 +1,9 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-import { setSelectedEpisode } from '../../store/features/episodes/episodesSlice';
-import { dateFormat, timeFormat } from '../../utils/helpers';
-import { IEpisodeProps } from '../../types/podcast.types';
+import { setSelectedEpisode } from 'store/features/episodes/episodesSlice';
+import { dateFormat, timeFormat } from 'utils/helpers';
+import { IEpisodeProps } from 'types/podcast.types';
 
 import './EpisodesList.scss';
 

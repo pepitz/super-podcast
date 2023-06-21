@@ -1,9 +1,9 @@
 import { ReactNode } from 'react';
 
-import PodcastInfo from '../PodcastInfo';
-import './PodcastLayout.scss';
+import usePodcasts from 'pages/PodcastDashboard/usePodcasts';
+import PodcastInfo from 'components/PodcastInfo';
 
-import usePodcasts from '../../pages/PodcastDashboard/usePodcasts';
+import './PodcastLayout.scss';
 
 const PodcastLayout = ({ children }: { children: ReactNode }) => {
   const { podcastInfo, handleBackToPodcasts } = usePodcasts();

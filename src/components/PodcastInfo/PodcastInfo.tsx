@@ -1,4 +1,4 @@
-import { ICurrentPodcast } from '../../types/podcast.types';
+import { ICurrentPodcast } from 'types/podcast.types';
 import './PodcastInfo.scss';
 
 type TPodcastInfoProps = {
