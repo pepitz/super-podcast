@@ -1,26 +1,24 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { fetchEpisodes } from 'store/features/episodes/episodesSlice';
+
+import { useAppDispatch, useAppSelector } from 'app/hooks';
 import {
   setCurrentPodcast,
   selectAllPodcasts,
   fetchPodcasts,
   getPodcastsError,
   getPodcastsStatus,
-} from '../../store/features/podcasts/podcastsSlice';
+} from 'store/features/podcasts/podcastsSlice';
 
-import {
-  Entry,
-  IEpisodeProps,
-  ICurrentPodcast,
-} from '../../types/podcast.types';
+import { Entry, IEpisodeProps, ICurrentPodcast } from 'types/podcast.types';
+
 import {
   convertToCurrentPodcast,
   dayInterval,
   getLastUpdatedDate,
-} from '../../utils/helpers';
-import { fetchEpisodes } from '../../store/features/episodes/episodesSlice';
+} from 'utils/helpers';
 
 const usePodcasts = () => {
   const navigate = useNavigate();

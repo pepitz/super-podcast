@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import usePodcasts from 'pages/PodcastDashboard/usePodcasts';
+import usePodcasts from 'hooks/usePodcasts';
 import PodcastInfo from 'components/PodcastInfo';
 
 import './PodcastLayout.scss';

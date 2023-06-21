@@ -1,7 +1,7 @@
 import './PodcastDashboard.scss';
-import PodcastsList from '../../components/PodcastsList/PodcastsList';
+import PodcastsList from 'components/PodcastsList/PodcastsList';
 import Search from 'components/Search/Search';
-import usePodcasts from './usePodcasts';
+import usePodcasts from 'hooks/usePodcasts';
 
 const PodcastDashboard = (): JSX.Element => {
   const {

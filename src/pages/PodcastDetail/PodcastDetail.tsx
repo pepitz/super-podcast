@@ -2,7 +2,7 @@ import PodcastLayout from 'components/PodcastLayout';
 import EpisodesCounter from 'components/EpisodesCounter/EpisodesCounter';
 import EpisodesList from 'components/EpisodesList/EpisodesList';
 
-import usePodcasts from 'pages/PodcastDashboard/usePodcasts';
+import usePodcasts from 'hooks/usePodcasts';
 
 import './PodcastDetail.scss';
 
