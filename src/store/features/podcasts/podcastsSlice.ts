@@ -2,7 +2,11 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from 'app/store';
 import { Entry, ICurrentPodcast } from 'types/podcast.types';
 import axios from 'axios';
-import { FETCHED_PODCASTS, FETCHED_PODCASTS_DATE } from 'constants/constants';
+import {
+  FETCHED_PODCASTS,
+  FETCHED_PODCASTS_DATE,
+  ITUNES_BASE_URL_PATH,
+} from 'constants/constants';
 import { convertTimeOrDataFromLocalStorage } from 'utils/convertStorageDate';
 import { dayInterval } from 'utils/helpers';
 
@@ -46,7 +50,7 @@ export const fetchPodcasts = createAsyncThunk<Entry[]>(
     }
 
     const response = await axios.get(
-      `https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json`
+      `${ITUNES_BASE_URL_PATH}us/rss/toppodcasts/limit=100/genre=1310/json`
     );
 
     return response.data.feed.entry;
@@ -62,7 +66,7 @@ export const podcastsSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchPodcasts.pending, (state, action) => {
+    builder.addCase(fetchPodcasts.pending, (state, _) => {
       state.status = 'loading';
     });
     builder.addCase(fetchPodcasts.fulfilled, (state, action) => {

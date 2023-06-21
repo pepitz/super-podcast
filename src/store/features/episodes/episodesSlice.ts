@@ -1,6 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IEpisodeInitial, IEpisodeProps } from 'types/podcast.types';
+
 import axios from 'axios';
+
+import { IEpisodeInitial, IEpisodeProps } from 'types/podcast.types';
+import {
+  FETCHED_EPISODES,
+  FETCHED_EPISODES_DATE,
+  ITUNES_BASE_URL_PATH,
+} from 'constants/constants';
 
 export interface EpisodesState {
   selectedEpisode: IEpisodeProps;
@@ -21,7 +28,7 @@ const initialState: EpisodesState = {
 export const fetchEpisodes = async (id: number) => {
   try {
     const response = await axios.get(
-      `https://itunes.apple.com/lookup?id=${id}&media=podcast&entity=podcastEpisode&limit=20/json`
+      `${ITUNES_BASE_URL_PATH}lookup?id=${id}&media=podcast&entity=podcastEpisode&limit=20/json`
     );
 
     const episodes = response.data.results
@@ -47,11 +54,11 @@ export const fetchEpisodes = async (id: number) => {
       });
 
     localStorage.setItem(
-      '_episodesTime',
+      FETCHED_EPISODES_DATE,
       JSON.stringify(new Date().getTime().toString())
     );
 
-    localStorage.setItem('_episodes', JSON.stringify(episodes));
+    localStorage.setItem(FETCHED_EPISODES, JSON.stringify(episodes));
 
     return episodes;
   } catch (error) {

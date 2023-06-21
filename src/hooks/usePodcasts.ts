@@ -19,6 +19,7 @@ import {
   dayInterval,
   getLastUpdatedDate,
 } from 'utils/helpers';
+import { FETCHED_EPISODES, FETCHED_EPISODES_DATE } from 'constants/constants';
 
 const usePodcasts = () => {
   const navigate = useNavigate();
@@ -80,14 +81,14 @@ const usePodcasts = () => {
   }, [podcastId]);
 
   const getStoredEpisodes = () => {
-    const dataPodcastEpisodesArr = localStorage.getItem('_episodes');
+    const dataPodcastEpisodesArr = localStorage.getItem(FETCHED_EPISODES);
     if (dataPodcastEpisodesArr?.length) {
       setPodcastEpisodes(JSON.parse(dataPodcastEpisodesArr));
     }
   };
 
   const getStoredEpisodesDate = useCallback(
-    () => getLastUpdatedDate('_episodesTime'),
+    () => getLastUpdatedDate(FETCHED_EPISODES_DATE),
     []
   );
 
