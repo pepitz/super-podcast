@@ -4,10 +4,11 @@ import {
   Navigate,
 } from 'react-router-dom';
 
-import RootLayout from '../../pages/Root/Root';
-import PodcastDashboard from '../../pages/PodcastDashboard';
-import PodcastDetail from '../../pages/PodcastDetail/PodcastDetail';
-import PodcastEpisode from '../../pages/PodcastEpisode/PodcastEpisode';
+import RootLayout from 'pages/Root/Root';
+
+import PodcastDashboard from 'pages/PodcastDashboard';
+import PodcastDetail from 'pages/PodcastDetail';
+import PodcastEpisode from 'pages/PodcastEpisode';
 
 const router = createBrowserRouter([
   {

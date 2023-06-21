@@ -4,7 +4,7 @@ import './Episode.scss';
 const Episode = () => {
   const { selectedEpisode } = usePodcasts();
 
-  const linkRegex = /(https?\:\/\/)?(www\.)?[^\s]+\.[^\s]+/g;
+  const linkRegex = /(https?:\/\/)?(www\.)?[^\s]+\.[^\s]+/g;
   const replacer = (matched: string) => {
     let withProtocol = matched;
 

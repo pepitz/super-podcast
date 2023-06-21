@@ -3,9 +3,9 @@ import { Provider } from 'react-redux';
 import { store } from './app/store';
 
 import './index.scss';
-import App from './components/App/App';
 
 import reportWebVitals from './reportWebVitals';
+import App from 'components/App/App';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

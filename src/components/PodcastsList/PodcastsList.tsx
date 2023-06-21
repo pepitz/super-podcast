@@ -1,4 +1,4 @@
-import { Entry } from '../../types/podcast.types';
+import { Entry } from 'types/podcast.types';
 
 interface IPodcastsListProps {
   podcasts: Entry[];
