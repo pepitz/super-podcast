@@ -4,6 +4,7 @@ import './Header.scss';
 
 const Header = () => {
   const navigation = useNavigation();
+
   return (
     <header className="header">
       <nav>
@@ -13,9 +14,9 @@ const Header = () => {
       </nav>
 
       <div className="loader">
-        {navigation.state === 'loading' && (
+        {navigation.state === 'loading' ? (
           <div className="loader__container"></div>
-        )}
+        ) : null}
       </div>
     </header>
   );
