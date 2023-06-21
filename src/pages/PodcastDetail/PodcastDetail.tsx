@@ -12,14 +12,14 @@ const PodcastDetail = () => {
   return (
     <PodcastLayout>
       {podcastEpisodes?.length ? (
-        <div className="episodes__container">
+        <section className="episodes__container">
           <div className="episodes__counter">
             <EpisodesCounter data={podcastEpisodes} />
           </div>
           <div className="episodes__list">
             <EpisodesList data={podcastEpisodes} />
           </div>
-        </div>
+        </section>
       ) : null}
     </PodcastLayout>
   );

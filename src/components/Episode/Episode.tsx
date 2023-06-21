@@ -31,7 +31,7 @@ const Episode = () => {
   }
 
   return selectedEpisode ? (
-    <div className="episode episode-card">
+    <section className="episode episode-card">
       <div className="episode__title">{selectedEpisode.title}</div>
       <div id="target" className="episode__description"></div>
       <div className="audioControl">
@@ -43,7 +43,7 @@ const Episode = () => {
           <source src={selectedEpisode.url} type="audio/mpeg" />
         </audio>
       </div>
-    </div>
+    </section>
   ) : null;
 };
 
