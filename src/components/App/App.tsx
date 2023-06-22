@@ -10,7 +10,7 @@ import PodcastDashboard from 'pages/PodcastDashboard';
 import PodcastDetail from 'pages/PodcastDetail';
 import PodcastEpisode from 'pages/PodcastEpisode';
 
-const router = createBrowserRouter([
+export const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,

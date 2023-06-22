@@ -1,17 +1,16 @@
-import { render, screen, within } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 
-import { Provider } from 'react-redux';
-import { store } from 'app/store';
+import { renderWithProviders } from 'test-utils';
 
-import App from 'components/App/App';
+import PodcastDashboard from 'pages/PodcastDashboard';
 
 describe('PodcastDashboard component', () => {
   test('initial conditions', async () => {
-    render(
-      <Provider store={store}>
-        <App />
-      </Provider>
+    renderWithProviders(
+      <MemoryRouter>
+        <PodcastDashboard />
+      </MemoryRouter>
     );
 
     // should render Search
