@@ -52,6 +52,7 @@ export const fetchPodcasts = createAsyncThunk<Entry[]>(
     const response = await axios.get(
       `${ITUNES_BASE_URL_PATH}us/rss/toppodcasts/limit=100/genre=1310/json`
     );
+    console.log('podcasts data: ', response.data.feed.entry);
 
     return response.data.feed.entry;
   }
