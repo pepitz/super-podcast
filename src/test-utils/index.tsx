@@ -1,4 +1,6 @@
 import React, { PropsWithChildren } from 'react';
+
+import { MemoryRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import type { RenderOptions } from '@testing-library/react';
 
@@ -32,7 +34,11 @@ export function renderWithProviders(
   }: ExtendedRenderOptions = {}
 ) {
   function Wrapper({ children }: PropsWithChildren<{}>): JSX.Element {
-    return <Provider store={store}>{children}</Provider>;
+    return (
+      <MemoryRouter>
+        <Provider store={store}>{children}</Provider>
+      </MemoryRouter>
+    );
   }
 
   // Return an object with the store and all of RTL's query functions

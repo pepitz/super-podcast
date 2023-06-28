@@ -7,11 +7,7 @@ import PodcastDashboard from 'pages/PodcastDashboard';
 
 describe('PodcastDashboard component', () => {
   test('initial conditions', async () => {
-    renderWithProviders(
-      <MemoryRouter>
-        <PodcastDashboard />
-      </MemoryRouter>
-    );
+    renderWithProviders(<PodcastDashboard />);
 
     // should render Search
     const inputNode = await screen.findByPlaceholderText(/^filter/i);
