@@ -1,5 +1,4 @@
-import { screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
+import { screen, prettyDOM, logRoles } from '@testing-library/react';
 
 import { renderWithProviders } from 'test-utils';
 
@@ -10,7 +9,7 @@ describe('PodcastDashboard component', () => {
     renderWithProviders(<PodcastDashboard />);
 
     // should render Search
-    const inputNode = await screen.findByPlaceholderText(/^filter/i);
+    const inputNode = await screen.findByPlaceholderText('Filter results...');
     expect(inputNode).toBeInTheDocument();
     expect(inputNode).toHaveTextContent('');
 
@@ -20,6 +19,7 @@ describe('PodcastDashboard component', () => {
 
     // should render items inside PodcastsList
     const items = await screen.findAllByRole('listitem');
+
     expect(items.length).toBeGreaterThan(0);
   });
 });
