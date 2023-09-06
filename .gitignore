@@ -19,7 +19,7 @@
 .env.production.local
 .eslintcache
 .vscode
-.pdf
+*.pdf
 
 npm-debug.log*
 yarn-debug.log*
