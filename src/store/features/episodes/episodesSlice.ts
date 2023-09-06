@@ -1,13 +1,12 @@
-import { createSlice } from '@reduxjs/toolkit';
-
-import axios from 'axios';
-
-import { IEpisodeInitial, IEpisodeProps } from 'types/podcast.types';
 import {
   FETCHED_EPISODES,
   FETCHED_EPISODES_DATE,
   ITUNES_BASE_URL_PATH,
-} from 'constants/constants';
+} from "constants/constants";
+import { IEpisodeInitial, IEpisodeProps } from "types/podcast.types";
+
+import axios from "axios";
+import { createSlice } from "@reduxjs/toolkit";
 
 export interface EpisodesState {
   selectedEpisode: IEpisodeProps;
@@ -15,12 +14,12 @@ export interface EpisodesState {
 
 const initialState: EpisodesState = {
   selectedEpisode: {
-    id: '',
-    collectionId: '',
-    title: '',
-    url: '',
-    description: '',
-    releaseDate: '',
+    id: "",
+    collectionId: "",
+    title: "",
+    url: "",
+    description: "",
+    releaseDate: "",
     durationTime: 0,
   },
 };
@@ -67,7 +66,7 @@ export const fetchEpisodes = async (id: number) => {
 };
 
 export const episodesSlice = createSlice({
-  name: 'episodes',
+  name: "episodes",
   initialState: initialState,
   reducers: {
     setSelectedEpisode: (state, action) => {

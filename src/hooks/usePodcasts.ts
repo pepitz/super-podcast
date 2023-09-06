@@ -1,25 +1,22 @@
-import { useState, useEffect, useCallback } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-
-import { fetchEpisodes } from 'store/features/episodes/episodesSlice';
-
-import { useAppDispatch, useAppSelector } from 'app/hooks';
-import {
-  setCurrentPodcast,
-  selectAllPodcasts,
-  fetchPodcasts,
-  getPodcastsError,
-  getPodcastsStatus,
-} from 'store/features/podcasts/podcastsSlice';
-
-import { Entry, IEpisodeProps, ICurrentPodcast } from 'types/podcast.types';
-
+import { Entry, ICurrentPodcast, IEpisodeProps } from "types/podcast.types";
+import { FETCHED_EPISODES, FETCHED_EPISODES_DATE } from "constants/constants";
 import {
   convertToCurrentPodcast,
   dayInterval,
   getLastUpdatedDate,
-} from 'utils/helpers';
-import { FETCHED_EPISODES, FETCHED_EPISODES_DATE } from 'constants/constants';
+} from "utils/helpers";
+import {
+  fetchPodcasts,
+  getPodcastsError,
+  getPodcastsStatus,
+  selectAllPodcasts,
+  setCurrentPodcast,
+} from "store/features/podcasts/podcastsSlice";
+import { useAppDispatch, useAppSelector } from "app/hooks";
+import { useCallback, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+
+import { fetchEpisodes } from "store/features/episodes/episodesSlice";
 
 const usePodcasts = () => {
   const navigate = useNavigate();
@@ -29,7 +26,7 @@ const usePodcasts = () => {
   const podcastsStatus = useAppSelector(getPodcastsStatus);
 
   const { podcastId, episodeId } = useParams();
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const [podcastsData, setPodcastsData] = useState<Entry[]>(podcasts);
   const [podcastInfo, setPodcastInfo] = useState({} as ICurrentPodcast);
   const [podcastEpisodes, setPodcastEpisodes] = useState<IEpisodeProps[]>();
@@ -47,7 +44,7 @@ const usePodcasts = () => {
   };
 
   const handleBackToPodcasts = (): void => {
-    navigate('/');
+    navigate("/");
   };
 
   const getSelectedPodcast = useCallback(() => {
@@ -55,7 +52,7 @@ const usePodcasts = () => {
 
     if (podcastId && podcasts.length) {
       const podcastsIds = podcasts.map(
-        (podcast) => +podcast.id.attributes['im:id']
+        (podcast) => +podcast.id.attributes["im:id"]
       );
       const isPodcastIdMatched =
         Boolean(podcastId) && podcastsIds.includes(Number(podcastId));
@@ -65,7 +62,7 @@ const usePodcasts = () => {
       }
 
       selectedPodcast = podcasts.find(
-        (podcast) => +podcast.id.attributes['im:id'] === +podcastId
+        (podcast) => +podcast.id.attributes["im:id"] === +podcastId
       );
       if (selectedPodcast) {
         setPodcastInfo(convertToCurrentPodcast(selectedPodcast));
@@ -97,6 +94,7 @@ const usePodcasts = () => {
   const haveTimePassedEpisodes = episodesStoredTime
     ? dayInterval(new Date(episodesStoredTime))
     : false;
+
   useEffect(() => {
     if (
       !episodesStoredTime ||
@@ -151,7 +149,7 @@ const usePodcasts = () => {
           podcast.title.label
             .toLocaleLowerCase()
             .includes(query.toLocaleLowerCase()) ||
-          podcast['im:name'].label
+          podcast["im:name"].label
             .toLocaleLowerCase()
             .includes(query.toLocaleLowerCase())
       );

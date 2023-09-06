@@ -1,16 +1,17 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from 'app/store';
-import { Entry, ICurrentPodcast } from 'types/podcast.types';
-import axios from 'axios';
+import { Entry, ICurrentPodcast } from "types/podcast.types";
 import {
   FETCHED_PODCASTS,
   FETCHED_PODCASTS_DATE,
   ITUNES_BASE_URL_PATH,
-} from 'constants/constants';
-import { convertTimeOrDataFromLocalStorage } from 'utils/convertStorageDate';
-import { dayInterval } from 'utils/helpers';
+} from "constants/constants";
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-type TPodcastsSliceStatus = 'idle' | 'loading' | 'succeeded' | 'failed';
+import { RootState } from "app/store";
+import axios from "axios";
+import { convertTimeOrDataFromLocalStorage } from "utils/convertStorageDate";
+import { dayInterval } from "utils/helpers";
+
+type TPodcastsSliceStatus = "idle" | "loading" | "succeeded" | "failed";
 
 interface IPodcastsSliceState {
   podcasts: Entry[];
@@ -21,20 +22,20 @@ interface IPodcastsSliceState {
 
 const initialState: IPodcastsSliceState = {
   podcasts: [],
-  status: 'idle',
+  status: "idle",
   error: null,
   currentPodcast: {
     id: 0,
-    title: '',
+    title: "",
     heightImg: 40,
-    srcImg: '',
-    author: '',
-    description: '',
+    srcImg: "",
+    author: "",
+    description: "",
   },
 };
 
 export const fetchPodcasts = createAsyncThunk<Entry[]>(
-  'podcasts/fetchPodcasts',
+  "podcasts/fetchPodcasts",
   async () => {
     const lastFetchedDate = convertTimeOrDataFromLocalStorage<number>(
       FETCHED_PODCASTS_DATE
@@ -58,7 +59,7 @@ export const fetchPodcasts = createAsyncThunk<Entry[]>(
 );
 
 export const podcastsSlice = createSlice({
-  name: 'podcasts',
+  name: "podcasts",
   initialState: initialState,
   reducers: {
     setCurrentPodcast: (state, action: PayloadAction<ICurrentPodcast>) => {
@@ -67,10 +68,10 @@ export const podcastsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchPodcasts.pending, (state, _) => {
-      state.status = 'loading';
+      state.status = "loading";
     });
     builder.addCase(fetchPodcasts.fulfilled, (state, action) => {
-      state.status = 'succeeded';
+      state.status = "succeeded";
       state.podcasts = action.payload;
 
       // save timestamp/data to localStorage for persistense
@@ -81,8 +82,8 @@ export const podcastsSlice = createSlice({
       localStorage.setItem(FETCHED_PODCASTS, JSON.stringify(action.payload));
     });
     builder.addCase(fetchPodcasts.rejected, (state, action) => {
-      state.status = 'failed';
-      state.error = action.error?.message || 'A problem has occured.';
+      state.status = "failed";
+      state.error = action.error?.message || "A problem has occured.";
     });
   },
 });

@@ -8,7 +8,7 @@ const RootLayout = () => {
   // const navigation = useNavigation();
   return (
     <div className="rootWrapper">
-      <Header></Header>
+      <Header />
       <main className="rootBody">
         <Outlet />
       </main>
