@@ -1,9 +1,11 @@
-import { NavLink, useNavigation } from 'react-router-dom';
-
 import './Header.scss';
 
+import { NavLink } from 'react-router-dom';
+import { getPodcastsStatus } from 'store/features/podcasts/podcastsSlice';
+import { useAppSelector } from '../../app/hooks';
+
 const Header = () => {
-  const navigation = useNavigation();
+  const podcastsStatus = useAppSelector(getPodcastsStatus);
 
   return (
     <header className="header">
@@ -14,7 +16,7 @@ const Header = () => {
       </nav>
 
       <div className="loader">
-        {navigation.state === 'loading' ? (
+        {podcastsStatus === 'loading' ? (
           <div className="loader__container"></div>
         ) : null}
       </div>
