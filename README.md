@@ -40,14 +40,16 @@ Instead, it will copy all the configuration files and the transitive dependencie
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
 ## Software used
-* [React](https://beta.es.reactjs.org/)
-* [TypeScript](https://www.typescriptlang.org/)
-* [Redux Toolkit](https://redux-toolkit.js.org/)
-* [React Router DOM](https://reactrouter.com/en/main)
-* [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
-* [Axios](https://axios-http.com/es/docs/intro)
-* [SASS](https://sass-lang.com/)
-* [date-fns](https://date-fns.org)
+
+- [Node.js] Node version 16.17.0
+- [React](https://beta.es.reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Redux Toolkit](https://redux-toolkit.js.org/)
+- [React Router DOM](https://reactrouter.com/en/main)
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+- [Axios](https://axios-http.com/es/docs/intro)
+- [SASS](https://sass-lang.com/)
+- [date-fns](https://date-fns.org)
 
 ## Learn More
 
