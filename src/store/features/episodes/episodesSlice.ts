@@ -2,11 +2,11 @@ import {
   FETCHED_EPISODES,
   FETCHED_EPISODES_DATE,
   ITUNES_BASE_URL_PATH,
-} from "constants/constants";
-import { IEpisodeInitial, IEpisodeProps } from "types/podcast.types";
+} from "@constants/constants";
 
 import axios from "axios";
 import { createSlice } from "@reduxjs/toolkit";
+import { IEpisodeInitial, IEpisodeProps } from "../../../types/podcast.types";
 
 export interface EpisodesState {
   selectedEpisode: IEpisodeProps;

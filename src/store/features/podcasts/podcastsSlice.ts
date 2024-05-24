@@ -1,15 +1,15 @@
-import { Entry, ICurrentPodcast } from "types/podcast.types";
 import {
   FETCHED_PODCASTS,
   FETCHED_PODCASTS_DATE,
   ITUNES_BASE_URL_PATH,
-} from "constants/constants";
+} from "@constants/constants";
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import { RootState } from "app/store";
+import { RootState } from "@app/store";
 import axios from "axios";
-import { convertTimeOrDataFromLocalStorage } from "utils/convertStorageDate";
-import { dayInterval } from "utils/helpers";
+import { convertTimeOrDataFromLocalStorage } from "@utils/convertStorageDate";
+import { dayInterval } from "@utils/helpers";
+import { Entry, ICurrentPodcast } from "../../../types/podcast.types";
 
 type TPodcastsSliceStatus = "idle" | "loading" | "succeeded" | "failed";
 

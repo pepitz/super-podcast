@@ -1,7 +1,8 @@
-import './PodcastDashboard.scss';
-import PodcastsList from 'components/PodcastsList/PodcastsList';
-import Search from 'components/Search/Search';
-import usePodcasts from 'hooks/usePodcasts';
+import "./PodcastDashboard.scss";
+import PodcastsList from "@components/PodcastsList/PodcastsList";
+
+import usePodcasts from "@hooks/usePodcasts";
+import Search from "@components/Search";
 
 const PodcastDashboard = (): JSX.Element => {
   const {
@@ -14,9 +15,9 @@ const PodcastDashboard = (): JSX.Element => {
   } = usePodcasts();
 
   let content = null;
-  if (podcastsStatus === 'loading') {
+  if (podcastsStatus === "loading") {
     content = <p>Loading podcasts...</p>;
-  } else if (podcastsStatus === 'succeeded') {
+  } else if (podcastsStatus === "succeeded") {
     content = (
       <>
         <Search
@@ -30,7 +31,7 @@ const PodcastDashboard = (): JSX.Element => {
         />
       </>
     );
-  } else if (podcastsStatus === 'failed') {
+  } else if (podcastsStatus === "failed") {
     content = `A ${podcastsError} occured.`;
   }
 

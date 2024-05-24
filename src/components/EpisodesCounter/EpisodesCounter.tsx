@@ -1,5 +1,5 @@
-import { IEpisodeProps } from 'types/podcast.types';
-import './EpisodesCounter.scss';
+import { IEpisodeProps } from "../../types/podcast.types";
+import "./EpisodesCounter.scss";
 
 const EpisodesCounter = (props: { data: IEpisodeProps[] }) => {
   const { data } = props;

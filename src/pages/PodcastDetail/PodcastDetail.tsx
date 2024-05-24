@@ -1,10 +1,10 @@
-import PodcastLayout from 'components/PodcastLayout';
-import EpisodesCounter from 'components/EpisodesCounter/EpisodesCounter';
-import EpisodesList from 'components/EpisodesList/EpisodesList';
+import PodcastLayout from "@components/PodcastLayout";
+import EpisodesCounter from "@components/EpisodesCounter/EpisodesCounter";
+import EpisodesList from "@components/EpisodesList/EpisodesList";
 
-import usePodcasts from 'hooks/usePodcasts';
+import usePodcasts from "@hooks/usePodcasts";
 
-import './PodcastDetail.scss';
+import "./PodcastDetail.scss";
 
 const PodcastDetail = () => {
   const { podcastEpisodes } = usePodcasts();

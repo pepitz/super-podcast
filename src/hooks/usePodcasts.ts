@@ -1,22 +1,23 @@
-import { Entry, ICurrentPodcast, IEpisodeProps } from "types/podcast.types";
-import { FETCHED_EPISODES, FETCHED_EPISODES_DATE } from "constants/constants";
+// import { Entry, ICurrentPodcast, IEpisodeProps } from "podcast.types";
+import { FETCHED_EPISODES, FETCHED_EPISODES_DATE } from "@constants/constants";
 import {
   convertToCurrentPodcast,
   dayInterval,
   getLastUpdatedDate,
-} from "utils/helpers";
+} from "@utils/helpers";
 import {
   fetchPodcasts,
   getPodcastsError,
   getPodcastsStatus,
   selectAllPodcasts,
   setCurrentPodcast,
-} from "store/features/podcasts/podcastsSlice";
-import { useAppDispatch, useAppSelector } from "app/hooks";
+} from "@store/features/podcasts/podcastsSlice";
+import { useAppDispatch, useAppSelector } from "@app/hooks";
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { fetchEpisodes } from "store/features/episodes/episodesSlice";
+import { fetchEpisodes } from "@store/features/episodes/episodesSlice";
+import { Entry, ICurrentPodcast, IEpisodeProps } from "../types/podcast.types";
 
 const usePodcasts = () => {
   const navigate = useNavigate();

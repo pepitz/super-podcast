@@ -1,5 +1,5 @@
-import usePodcasts from 'hooks/usePodcasts';
-import './Episode.scss';
+import usePodcasts from "@hooks/usePodcasts";
+import "./Episode.scss";
 
 const Episode = () => {
   const { selectedEpisode } = usePodcasts();
@@ -8,8 +8,8 @@ const Episode = () => {
   const replacer = (matched: string) => {
     let withProtocol = matched;
 
-    if (!withProtocol.startsWith('http')) {
-      withProtocol = 'http://' + matched;
+    if (!withProtocol.startsWith("http")) {
+      withProtocol = "http://" + matched;
     }
 
     const newStr = `<a
@@ -25,7 +25,7 @@ const Episode = () => {
   const modifiedStr =
     selectedEpisode &&
     selectedEpisode?.description.replace(linkRegex, replacer);
-  const target = document.getElementById('target');
+  const target = document.getElementById("target");
   if (target !== undefined && target !== null && modifiedStr !== undefined) {
     target.innerHTML = modifiedStr;
   }

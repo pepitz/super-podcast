@@ -1,11 +1,11 @@
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useLocation, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
-import { setSelectedEpisode } from 'store/features/episodes/episodesSlice';
-import { dateFormat, timeFormat } from 'utils/helpers';
-import { IEpisodeProps } from 'types/podcast.types';
+import { setSelectedEpisode } from "@store/features/episodes/episodesSlice";
+import { dateFormat, timeFormat } from "@utils/helpers";
 
-import './EpisodesList.scss';
+import "./EpisodesList.scss";
+import { IEpisodeProps } from "../../types/podcast.types";
 
 const EpisodesList = (props: { data: IEpisodeProps[] }) => {
   const { data } = props;
@@ -40,12 +40,12 @@ const EpisodesList = (props: { data: IEpisodeProps[] }) => {
                   {episode.title}
                 </td>
                 <td>
-                  {episode.releaseDate ? dateFormat(episode.releaseDate) : '-'}
+                  {episode.releaseDate ? dateFormat(episode.releaseDate) : "-"}
                 </td>
                 <td>
                   {episode.durationTime
                     ? timeFormat(episode.durationTime)
-                    : '-'}
+                    : "-"}
                 </td>
               </tr>
             ))}

@@ -2,36 +2,35 @@ import {
   RouterProvider,
   createBrowserRouter,
   Navigate,
-} from 'react-router-dom';
+} from "react-router-dom";
 
-import RootLayout from 'pages/Root/Root';
-
-import PodcastDashboard from 'pages/PodcastDashboard';
-import PodcastDetail from 'pages/PodcastDetail';
-import PodcastEpisode from 'pages/PodcastEpisode';
+import PodcastEpisode from "@pages/PodcastEpisode";
+import RootLayout from "@pages/Root";
+import PodcastDashboard from "@pages/PodcastDashboard";
+import PodcastDetail from "@pages/PodcastDetail";
 
 export const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <RootLayout />,
     children: [
       { index: true, element: <PodcastDashboard /> },
       {
-        path: '/podcast',
+        path: "/podcast",
         element: <PodcastDashboard />,
       },
       {
-        path: '/podcast/:podcastId',
+        path: "/podcast/:podcastId",
         element: <PodcastDetail />,
       },
       {
-        path: '/podcast/:podcastId/episode/:episodeId',
+        path: "/podcast/:podcastId/episode/:episodeId",
         element: <PodcastEpisode />,
       },
     ],
   },
   {
-    path: '*',
+    path: "*",
     element: <Navigate to="/" />,
   },
 ]);

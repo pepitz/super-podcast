@@ -1,24 +1,24 @@
-import { screen, prettyDOM, logRoles } from '@testing-library/react';
+import { screen, prettyDOM, logRoles } from "@testing-library/react";
 
-import { renderWithProviders } from 'test-utils';
+import { render } from "test-utils";
 
-import PodcastDashboard from 'pages/PodcastDashboard';
+import PodcastDashboard from "pages/PodcastDashboard";
 
-describe('PodcastDashboard component', () => {
-  test('initial conditions', async () => {
-    renderWithProviders(<PodcastDashboard />);
+describe("PodcastDashboard component", () => {
+  test("initial conditions", async () => {
+    render(<PodcastDashboard />);
 
     // should render Search
-    const inputNode = await screen.findByPlaceholderText('Filter results...');
+    const inputNode = await screen.findByPlaceholderText("Filter results...");
     expect(inputNode).toBeInTheDocument();
-    expect(inputNode).toHaveTextContent('');
+    expect(inputNode).toHaveTextContent("");
 
     //should render PodcastsList
-    const list = await screen.findByRole('list');
+    const list = await screen.findByRole("list");
     expect(list).toBeInTheDocument();
 
     // should render items inside PodcastsList
-    const items = await screen.findAllByRole('listitem');
+    const items = await screen.findAllByRole("listitem");
 
     expect(items.length).toBeGreaterThan(0);
   });

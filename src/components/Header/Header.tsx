@@ -1,9 +1,11 @@
-import './Header.scss';
+import "./Header.scss";
 
-import { NavLink, useLocation } from 'react-router-dom';
-import { getPodcastsStatus } from 'store/features/podcasts/podcastsSlice';
-import { useAppSelector } from '../../app/hooks';
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
+
+import { NavLink, useLocation } from "react-router-dom";
+
+import { getPodcastsStatus } from "@store/features/podcasts/podcastsSlice";
+import { useAppSelector } from "@app/hooks";
 
 const Header = () => {
   const podcastsStatus = useAppSelector(getPodcastsStatus);
@@ -18,7 +20,7 @@ const Header = () => {
       setLoading(false);
     }, 1000);
 
-    return () => clearTimeout(timeout)
+    return () => clearTimeout(timeout);
   }, [location, podcastsStatus]);
 
   return (
@@ -30,9 +32,7 @@ const Header = () => {
       </nav>
 
       <div className="loader">
-        {loading ? (
-          <div className="loader__container"></div>
-        ) : null}
+        {loading ? <div className="loader__container"></div> : null}
       </div>
     </header>
   );

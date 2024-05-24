@@ -1,4 +1,4 @@
-import { Entry } from 'types/podcast.types';
+import { Entry } from "../../types/podcast.types";
 
 interface IPodcastsListProps {
   podcasts: Entry[];
@@ -15,21 +15,21 @@ const PodcastsList = ({
         podcasts.map((podcast) => (
           <li
             className="item"
-            key={podcast.id.attributes['im:id']}
+            key={podcast.id.attributes["im:id"]}
             onClick={() => handlePodcastClick(podcast)}
           >
             <div className="imageWrapper">
               <img
                 className="podcastItemImage"
-                src={podcast['im:image'][2].label}
+                src={podcast["im:image"][2].label}
                 alt={podcast.title.label}
               />
             </div>
-            <h2 className="title">{podcast['im:name'].label}</h2>
+            <h2 className="title">{podcast["im:name"].label}</h2>
             <div className="author">
               <span>
                 <strong className="author-label">Author: </strong>
-                {podcast['im:artist'].label}
+                {podcast["im:artist"].label}
               </span>
             </div>
           </li>

@@ -1,9 +1,21 @@
 {
   "compilerOptions": {
     "baseUrl": "./src",
-    "target": "es6",
+    "paths": {
+      "@": ["*"],
+      "@app/*": ["app/*"],
+      "@constants/*": ["constants/*"],
+      "@store/*": ["store/*"],
+      "@hooks/*": ["hooks/*"],
+      "@utils/*": ["utils/*"],
+      "@types/*": ["types/*"],
+      "@components/*": ["components/*"],
+      "@pages/*": ["pages/*"]
+    },
+    "target": "esnext",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
+    "checkJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -15,8 +27,9 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "types": ["jest", "vitest/globals"],
+    "types": ["jest", "vitest/globals", "node"],
     "jsx": "react-jsx"
   },
-  "include": ["src", "vite.config.ts"]
+  "include": ["src", "vite.config.ts"],
+  "exclude": ["node_modules", "**/node_modules/*"]
 }
